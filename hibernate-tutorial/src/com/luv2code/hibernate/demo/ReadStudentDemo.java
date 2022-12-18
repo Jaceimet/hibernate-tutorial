@@ -39,6 +39,22 @@ public class ReadStudentDemo {
 			// MY NEW CODE
 			
 			// find out the student's ID: primary key
+			System.out.println("Saved student, Generate id: " + tempStudent.getId());
+			
+			// now get a new session and start a transaction
+			session = factory.getCurrentSession();
+			session.beginTransaction();
+								
+			// retrieve student based on the id: primary key
+			System.out.println("\nGetting student with id: " + tempStudent.getId());
+			
+			Student myStudent = session.get(Student.class, tempStudent.getId());
+			
+			System.out.println("Get complete: " + myStudent);
+			
+			// commit the transaction
+			session.getTransaction().commit();
+			
 			System.out.println("Done!");
 		}
 		finally{
